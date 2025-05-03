@@ -1,0 +1,217 @@
+/* Estilos generales para ambas páginas */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Estilos específicos para index.html */
+.index-page header {
+    background-color: #4892dd;
+    color: white;
+    padding: 15px 0;
+}
+
+.index-page header nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    gap: 50px;
+}
+
+.index-page header nav ul li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 2.2px 0;
+}
+
+.index-page header nav ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 280%;
+    width: 2px;
+    background-color: #f5f5f5;
+}
+
+.index-page header nav ul li:first-child {
+    font-weight: bold;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.index-page header nav ul li:nth-child(2) {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.index-page header nav ul li:last-child form {
+    display: flex;
+    justify-content: center;
+}
+
+.index-page form {
+    display: flex;
+    gap: 10px;
+}
+
+.index-page input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.index-page input[type="submit"] {
+    padding: 8px 15px;
+    background-color: #b6b6b6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.index-page input[type="submit"]:hover {
+    background-color: #99c5dd;
+}
+
+.index-page section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+}
+
+.index-page section ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    grid-template-rows: repeat(3, minmax(150px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.index-page section ul li {
+    background-color: #8ac3fd25;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.475);
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #00000052;
+    transition: transform 0.2s;
+}
+
+.index-page section ul li:hover { /* Animación CSS sobre cada opción de la lista */
+    background-color: #99c5dd;
+    transform: scale(1.1) rotate(10deg);
+    position: relative;
+    z-index: 1;
+}
+
+.index-page section ul li img {
+    width: 45%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.index-page section ul li h6 {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #2c3e50;
+}
+
+.index-page footer {
+    background-color: #4892dd;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+/* Estilos específicos para perfil.html */
+.perfil-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.perfil-page .main-container {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 30px;
+    align-items: stretch;
+}
+
+.perfil-page img {
+    border-radius: 50px 4px 4px 4px;
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    border: 1px solid #000000;
+}
+
+.perfil-page .content-box {
+    flex: 1;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.85);
+}
+
+.perfil-page h2 {
+    color: orange;
+    margin-top: 0;
+    font-size: 24px;
+    text-align: left;
+    font-family: "Inter";
+}
+
+.perfil-page p {
+    text-align: justify;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-family: "Roboto"
+}
+
+.perfil-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px;
+}
+
+.perfil-page td {
+    vertical-align: top;
+}
+
+.perfil-page td:first-child {
+    font-weight: bold;
+    width: 80%;
+    color: #174a7e;
+}
+
+.perfil-page #celda-negrita {
+    font-weight: bold;
+}
+
+.perfil-page a {
+    color: orange;
+    text-decoration: none;
+}
+
+.perfil-page a:hover {
+    text-decoration: underline;
+}
+
+.perfil-page a:visited {
+    color: red;
+    text-decoration: none;
+}
