@@ -1,0 +1,19 @@
+const perfil = {	
+	"nombre":"Alexander Churio",
+	"descripcion":"Soy estudiante del 8vo semestre de la Licenciatura en Computación de
+          la UCV. Estoy interesado en el área de Computación Gráfica y Base de
+          Datos. En mis tiempos libres suelo jugar videojuegos y tocar guitarra.
+          Actualmente trabajo por mi cuenta desarrollando software en el area
+          educativa en diferentes lenguajes de programación y tengo
+          conocimientos sobre Ensamblaje, Reparación y Mantenimiento de
+          Computadoras.",
+	"color": "Morado",
+	"libro": ["No me gusta leer"],
+	"musica": ["Escucho de todo"],
+	"video_juego": ["Saga Resident Evil"],
+	"lenguajes": ["C/C++", "Python", "Java"],
+	"email":"aleexch08@gmail.com",
+	"ci": "23708325",
+	"genero":"masculino",
+	"fecha_nacimiento":"12/01/1996"
+}
