@@ -342,7 +342,7 @@ body {
     }
 }
 
-/* Cambio de imagen responsive */
+/* Cambio de imagen responsive 
 @media (max-width: 768px) {
     #foto-no-dummy, #foto-perfil { 
         content: url("../img/CEDULAPequena.jpg");
@@ -353,4 +353,4 @@ body {
     #foto-no-dummy, #foto-perfil {  
         content: url("../img/CEDULAGrande.jpeg");
     }
-}
+}*/
