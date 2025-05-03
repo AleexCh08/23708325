@@ -1,22 +1,39 @@
 // Importar el archivo configES.json
 document.addEventListener('DOMContentLoaded', function() {
+    // Cargar configuración
     fetch('reto3/conf/configES.json')
         .then(response => {
-            if (!response.ok) throw new Error('Error al cargar el JSON');
-            return response.text(); // Leer como texto en lugar de JSON
+            if (!response.ok) throw new Error('Error al cargar configES.json');
+            return response.text();
         })
         .then(text => {
             const jsonStart = text.indexOf('{');
             const jsonEnd = text.lastIndexOf('}') + 1;
             const jsonString = text.slice(jsonStart, jsonEnd);
-
             const config = JSON.parse(jsonString);
+            
             if (!config) {
                 console.error('El JSON está vacío o es inválido');
                 return;
             }
             
-            actualizarIndexHTML(config); 
+            actualizarIndexHTML(config);
+            return config; // Esto permite que se pase al siguiente then
+        })
+        .then(config => {
+            // Cargar perfiles después de la configuración
+            return fetch('reto3/datos/index.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Error al cargar index.json');
+                    return response.text();
+                })
+                .then(text => {
+                    const jsonStart = text.indexOf('[');
+                    const jsonEnd = text.lastIndexOf(']') + 1;
+                    const jsonString = text.slice(jsonStart, jsonEnd);
+                    const perfiles = JSON.parse(jsonString);
+                    mostrarPerfiles(perfiles);
+                });
         })
         .catch(error => console.error('Error:', error));
 
@@ -49,5 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (footer && config.copyRight) {
             footer.textContent = config.copyRight;
         }
+    }
+
+    function mostrarPerfiles(perfiles) {
+        const seccionEstudiantes = document.querySelector('section ul');
+        if (!seccionEstudiantes) return;
+
+        seccionEstudiantes.innerHTML = '';
+
+        perfiles.forEach(perfil => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <img src="reto3/${perfil.imagen}" alt="Foto de ${perfil.nombre}">                   
+                <h6>${perfil.nombre}</h6>
+            `;
+            seccionEstudiantes.appendChild(li);
+        });
     }
 });
