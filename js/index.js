@@ -1,4 +1,3 @@
-// Importar el archivo configES.json
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar configuración
     fetch('reto3/conf/configES.json')
@@ -17,30 +16,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            actualizarIndexHTML(config);
-            return config; // Esto permite que se pase al siguiente then
+            actualizarHTML(config);
+            return config; 
         })
         .then(config => {
             // Cargar perfiles después de la configuración
             return fetch('reto3/datos/index.json')
-                .then(response => {
-                    if (!response.ok) throw new Error('Error al cargar index.json');
-                    return response.text();
-                })
-                .then(text => {
-                    const jsonStart = text.indexOf('[');
-                    const jsonEnd = text.lastIndexOf(']') + 1;
-                    const jsonString = text.slice(jsonStart, jsonEnd);
-                    const perfiles = JSON.parse(jsonString);
-                    mostrarPerfiles(perfiles);
-                });
+            .then(response => {
+                if (!response.ok) throw new Error('Error al cargar index.json');
+                return response.text();
+            })
+            .then(text => {
+                const jsonStart = text.indexOf('[');
+                const jsonEnd = text.lastIndexOf(']') + 1;
+                const jsonString = text.slice(jsonStart, jsonEnd);
+                const perfiles = JSON.parse(jsonString);
+
+                if (!perfiles) {
+                    console.error('El JSON está vacío o es inválido');
+                    return;
+                }
+                mostrarPerfiles(perfiles);
+            });
         })
         .catch(error => console.error('Error:', error));
 
-    function actualizarIndexHTML(config) {
+    function actualizarHTML(config) {
         // Actualizar el título del sitio
         if (config.sitio) {
-            document.title = config.sitio.join(' ');
+            document.title = `${config.sitio[0]} ${config.sitio[1]} ${config.sitio[2]}`;
         }
 
         // Actualizar el primer elemento del nav
@@ -65,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const footer = document.querySelector('footer p');
         if (footer && config.copyRight) {
             footer.textContent = config.copyRight;
-        }
+        }        
     }
 
     function mostrarPerfiles(perfiles) {
