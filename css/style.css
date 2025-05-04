@@ -65,13 +65,24 @@ body {
 
 .index-page input[type="text"] {
     padding: 8px;
-    border: 1px solid #ddd;
+    font-family: "Open Sans", Arial, sans-serif;
+    border: 1px solid #4892dd;
     border-radius: 4px;
+    color: #174a7e;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.index-page input[type="text"]:focus {
+    outline: none;
+    border-color: rgb(52, 104, 216);
+    box-shadow: 0 0 5px rgba(72, 146, 221, 0.5); 
+    background-color: white;
 }
 
 .index-page input[type="submit"] {
     padding: 8px 15px;
-    background-color: #b6b6b6;
+    background-color: #b6b6b6; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -144,6 +155,7 @@ body {
     outline: none;
     position: relative;
     z-index: 1;
+    cursor: pointer;
 }
 
 .index-page section ul li img {

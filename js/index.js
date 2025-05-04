@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar configuración
-    fetch('reto3/conf/configES.json')
+    // Cargar configuración e idioma
+    const lang = new URLSearchParams(window.location.search).get('lang') || 'ES'; // Idioma por defecto
+    fetch(`reto3/conf/config${lang.toUpperCase()}.json`)
         .then(response => {
-            if (!response.ok) throw new Error('Error al cargar configES.json');
+            if (!response.ok) throw new Error(`Idioma no soportado: ${lang}`);
             return response.text();
         })
         .then(text => {
@@ -57,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const saludoElement = document.querySelector('header nav ul li:nth-child(2)');
         if (saludoElement && config.saludo) {
             saludoElement.textContent = `${config.saludo}, Alexander Churio`;
+        }
+
+        // Actualizar el placeholder
+        const holderBoton = document.querySelector('header nav ul li:nth-child(3) form input[type="text"]');
+        if (holderBoton && config.nombre) {
+            holderBoton.placeholder = config.nombre;
         }
 
         // Actualizar el botón de login

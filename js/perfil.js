@@ -101,10 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar configuración
-    fetch('reto3/conf/configES.json')
+    // Cargar configuración e idioma
+    const lang = new URLSearchParams(window.location.search).get('lang') || 'ES'; // Idioma por defecto
+    fetch(`reto3/conf/config${lang.toUpperCase()}.json`)
         .then(response => {
-            if (!response.ok) throw new Error('Error al cargar configES.json');
+            if (!response.ok) throw new Error(`Idioma no soportado: ${lang}`);
             return response.text();
         })
         .then(text => {
