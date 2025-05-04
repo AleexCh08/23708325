@@ -98,6 +98,9 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background-color: #f5f5f5;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
 }
 
 /* Antes de usar grid 
@@ -132,10 +135,11 @@ body {
 .index-page section ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Columnas adaptables */
+    justify-content: center;
     gap: 20px;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .index-page section ul li {
@@ -176,6 +180,16 @@ body {
     text-align: center;
     padding: 10px 0;
     font-size: 0.9em;
+}
+
+.index-page .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: #174a7e;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    font-size: 1.2em;
 }
 
 /* Estilos específicos para perfil.html */

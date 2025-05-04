@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('El JSON está vacío o es inválido');
                     return;
                 }
-                mostrarPerfiles(perfiles);
+                mostrarPerfiles(perfiles,);
+                configurarBusqueda(perfiles, config);
             });
         })
         .catch(error => console.error('Error:', error));
@@ -79,11 +80,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }        
     }
 
-    function mostrarPerfiles(perfiles) {
+    // Función para filtrar estudiantes
+    function filtrarEstudiantes(textoBusqueda, perfiles) {
+        const texto = textoBusqueda.toLowerCase();
+        return perfiles.filter(perfil => 
+        perfil.nombre.toLowerCase().includes(texto)
+        );
+    }
+    
+    // Función para manejar la búsqueda en tiempo real
+    function configurarBusqueda(perfiles, config) {
+        const inputBusqueda = document.getElementById('buscar-nombre');
+        
+        inputBusqueda.addEventListener('input', (e) => {
+            const textoBusqueda = e.target.value.trim();
+            const estudiantesFiltrados = filtrarEstudiantes(textoBusqueda, perfiles);
+            mostrarPerfiles(estudiantesFiltrados, textoBusqueda, config);
+        });
+    }
+
+    // Funcion para mostar los perfiles
+    function mostrarPerfiles(perfiles, query = '', config) {
         const seccionEstudiantes = document.querySelector('section ul');
         if (!seccionEstudiantes) return;
 
         seccionEstudiantes.innerHTML = '';
+
+        if (perfiles.length === 0) {
+            // Mostrar mensaje cuando no hay resultados
+            const noResults = document.createElement('section');
+            noResults.className = 'no-results';
+            noResults.innerHTML = `${config?.noresultados} <strong>${query}</strong>`;
+            seccionEstudiantes.appendChild(noResults);
+            return;
+        }
 
         perfiles.forEach(perfil => {
             const li = document.createElement('li');
