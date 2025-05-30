@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 mostrarPerfiles(perfiles,);
                 configurarBusqueda(perfiles, config);
+                clickPerfiles();
             });
         })
         .catch(error => console.error('Error:', error));
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const holderBoton = document.querySelector('header nav ul li:nth-child(3) form input[type="text"]');
         if (holderBoton && config.nombre) {
             holderBoton.placeholder = config.nombre;
+            holderBoton.value = "";
         }
 
         // Actualizar el botón de login
@@ -96,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const textoBusqueda = e.target.value.trim();
             const estudiantesFiltrados = filtrarEstudiantes(textoBusqueda, perfiles);
             mostrarPerfiles(estudiantesFiltrados, textoBusqueda, config);
+            clickPerfiles();
         });
     }
 
@@ -117,11 +120,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         perfiles.forEach(perfil => {
             const li = document.createElement('li');
+            li.className = 'estudiante';
+            li.dataset.id = perfil.ci;
             li.innerHTML = `
                 <img src="reto3/${perfil.imagen}" alt="Foto de ${perfil.nombre}">                   
                 <h6>${perfil.nombre}</h6>
             `;
             seccionEstudiantes.appendChild(li);
+        });
+    }
+
+    // Funcion para redirigir desde el index al perfil del estudiante seleccionado
+    function clickPerfiles() {
+        document.querySelectorAll('.estudiante').forEach(item => {
+            item.replaceWith(item.cloneNode(true));
+        });
+
+        document.querySelectorAll('.estudiante').forEach(item => {
+            item.addEventListener('click', function() {
+                const idEstudiante = this.dataset.id;
+                const lang = new URLSearchParams(window.location.search).get('lang') || 'ES';
+                window.location.href = `perfil.html?id=${idEstudiante}&lang=${lang}`;
+            });
         });
     }
 });
