@@ -1,0 +1,336 @@
+/* Hojas de estilos compartidas para ambas paginas */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Estilos específicos para index.html */
+.index-page header {
+    background-color: #4892dd;
+    color: white;
+    padding: 15px 0;
+}
+
+.index-page li sub {
+    font-size: 0.7rem;
+}
+
+.index-page header nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    gap: 50px;
+}
+
+.index-page header nav ul li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 2.2px 0;
+}
+
+.index-page header nav ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 280%;
+    width: 2px;
+    background-color: #f5f5f5;
+}
+
+.index-page header nav ul li:first-child {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.index-page header nav ul li:nth-child(2) {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.index-page header nav ul li:last-child form {
+    display: flex;
+    justify-content: center;
+}
+
+.index-page form {
+    display: flex;
+    gap: 10px;
+}
+
+.index-page input[type="text"] {
+    padding: 8px;
+    font-family: "Open Sans", Arial, sans-serif;
+    border: 1px solid #4892dd;
+    border-radius: 4px;
+    color: #174a7e;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.index-page input[type="text"]:focus {
+    outline: none;
+    border-color: rgb(52, 104, 216);
+    box-shadow: 0 0 5px rgba(72, 146, 221, 0.5); 
+    background-color: white;
+}
+
+.index-page input[type="submit"] {
+    padding: 8px 15px;
+    background-color: #b6b6b6; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.index-page input[type="submit"]:hover {
+    background-color: #99c5dd;
+}
+
+.index-page section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+/* Despues de usar grid */
+.index-page section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.index-page section ul li {
+    background-color: #8ac3fd25;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.475);
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #00000052;
+    transition: all 0.3s ease;
+}
+
+.index-page section ul li:hover {
+    background-color: #99c5dd; 
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 0 15px rgba(72, 146, 221, 0.8); 
+    outline: none;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.index-page section ul li img {
+    width: 45%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.index-page section ul li h6 {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #2c3e50;
+}
+
+.index-page footer {
+    background-color: #4892dd;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+.index-page .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: #174a7e;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+
+/* Estilos específicos para perfil.html */
+.perfil-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Despues de usar flexbox */
+.main-container {
+    will-change: transform;
+    display: flex;
+    flex-direction: row; 
+    gap: 6px; 
+    margin-bottom: 30px;
+    align-items: stretch;
+}
+
+.perfil-page img {
+    flex: 0 0 auto; 
+    width: 200px; 
+    border-radius: 50px 4px 4px 4px;
+    height: auto; 
+    max-width: 100%;
+    object-fit: cover;
+    border: 1px solid #000000;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.content-box {
+    backface-visibility: hidden;
+    flex: 1; 
+    min-width: 0; 
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.85);
+}
+
+.perfil-page h2 {
+    color: orange;
+    margin-top: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    font-family: "Inter";
+}
+
+.perfil-page p {
+    text-align: justify;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-family: "Roboto"
+}
+
+.perfil-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px;
+}
+
+.perfil-page td {
+    vertical-align: top;
+}
+
+.perfil-page td:first-child {
+    font-weight: bold;
+    width: 80%;
+    color: #174a7e;
+}
+
+.perfil-page #celda-negrita {
+    font-weight: bold;
+}
+
+.perfil-page a {
+    color: orange;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.perfil-page a:hover {
+    text-decoration: underline;
+}
+
+.perfil-page a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+/* Media Queries para Responsive */
+/* 1. Dispositivos Móviles (320px — 480px) */
+@media (max-width: 480px) {
+    .index-page header nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .index-page header nav ul li:not(:last-child)::after {
+        display: none; 
+    }
+
+    .index-page section ul {
+        grid-template-columns: 1fr; 
+    }
+
+    .perfil-page .main-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .perfil-page img {
+        width: 100%;
+        border-radius: 4px;
+    }
+}
+
+/* 2. iPads, Tablets (481px — 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .index-page section ul {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+
+    .perfil-page .main-container {
+        gap: 15px;
+    }
+
+    .perfil-page img {
+        width: 180px;
+    }
+}
+
+/* 3. Laptops pequeñas (769px — 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .index-page section ul {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    }
+
+    .perfil-page .content-box {
+        padding: 15px;
+    }
+}
+
+/* 4. Pantallas grandes (1025px — 1200px) */
+@media (min-width: 1025px) {
+    .index-page section ul {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    }
+
+    .perfil-page .main-container {
+        max-width: 1000px;
+    }
+}
+
+/* Cambio de imagen responsive 
+@media (max-width: 768px) {
+    #foto-no-dummy, #foto-perfil { 
+        content: url("../img/23708325Pequena.jpg");
+    }
+}
+
+@media (min-width: 769px) {
+    #foto-no-dummy, #foto-perfil {  
+        content: url("../img/23708325Grande.jpeg");
+    }
+}*/
