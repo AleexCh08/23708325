@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.addEventListener('click', function() {
                 const idEstudiante = this.dataset.id;
                 const lang = new URLSearchParams(window.location.search).get('lang') || 'ES';
-                window.location.href = `perfil.html?id=${idEstudiante}&lang=${lang}`;
+                window.open(`perfil.html?id=${idEstudiante}&lang=${lang}`, '_blank');
             });
         });
     }

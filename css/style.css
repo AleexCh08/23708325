@@ -322,15 +322,9 @@ body {
     }
 }
 
-/* Cambio de imagen responsive 
+/* Cambio de imagen responsive */
 @media (max-width: 768px) {
-    #foto-no-dummy, #foto-perfil { 
+    #foto-perfil[data-profile-id="23708325"] { 
         content: url("../img/23708325Pequena.jpg");
     }
 }
-
-@media (min-width: 769px) {
-    #foto-no-dummy, #foto-perfil {  
-        content: url("../img/23708325Grande.jpeg");
-    }
-}*/

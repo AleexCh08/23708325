@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (perfilEncontrado) {
                 const fotoPerfil = document.getElementById('foto-perfil');
+                fotoPerfil.dataset.profileId = perfilId; // Nueva linea
                 fotoPerfil.src = `reto3/${perfilEncontrado.imagen}`;
                 fotoPerfil.alt = `Foto de ${perfilEncontrado.nombre}`;
                 
