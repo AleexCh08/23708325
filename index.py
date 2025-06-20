@@ -24,9 +24,9 @@ def generate_profile_html(perfil_data, config_data):
     
     # Actualizar la imagen del perfil
     html = html.replace(
-        '<img id="foto-perfil" src="" alt="" data-profile-id="" />',
-        f'<img id="foto-perfil" src="reto3/{perfil_data["ci"]}/{perfil_data.get("imagen", "default.jpg")}" alt="Foto de {perfil_data["nombre"]}" data-profile-id="{perfil_data["ci"]}" />'
-    )
+    '<img id="foto-perfil" src="" alt="" data-profile-id="" />',
+    f'<img id="foto-perfil" src="/reto3/{perfil_data["ci"]}/{perfil_data["ci"]}.jpg" alt="Foto de {perfil_data["nombre"]}" data-profile-id="{perfil_data["ci"]}" onerror="this.src=\'/reto3/{perfil_data["ci"]}/{perfil_data["ci"]}.png\';" />'
+)
 
     # Actualizar contenido principal
     html = html.replace('<h2></h2>', f'<h2>{perfil_data.get("nombre", "")}</h2>')
@@ -42,13 +42,42 @@ def generate_profile_html(perfil_data, config_data):
         (config_data.get("email", "Email"), f'<a href="mailto:{perfil_data["email"]}" target="_blank">{perfil_data["email"]}</a>')
     ]
 
-    # Actualizar la tabla 
+    # Actualización precisa de la tabla
+    table_start = html.find('<table>')
+    table_end = html.find('</table>') + 8
+    table_content = html[table_start:table_end]
+
+    # Dividir las filas de la tabla
+    rows = table_content.split('<tr>')[1:]  # Saltamos el primer elemento vacío
+
     for i, (label, value) in enumerate(table_data):
-        html = html.replace(
-            f'<td></td>\n              <td></td>', 
-            f'<td>{label}</td>\n              <td>{value}</td>', 
-            1
-        )
+        if i >= len(rows):
+            break
+
+        # Para el email
+        if i == 5:  
+            rows[i] = rows[i].replace(
+                '<td></td>\n              <td>\n                <a target="" href=""></a>\n              </td>',
+                f'<td>{label}</td>\n              <td>\n                <a target="_blank" href="mailto:{value}</a>\n              </td>'
+            )
+        # Para la celda negrita
+        elif i == 4:
+            rows[i] = rows[i].replace(
+                '<td></td>\n              <td id="celda-negrita"></td>',
+                f'<td>{label}</td>\n              <td id="celda-negrita">{value}</td>'
+            )
+        # Para las celdas normales
+        else:
+            rows[i] = rows[i].replace(
+                '<td></td>\n              <td></td>',
+                f'<td>{label}</td>\n              <td>{value}</td>'
+            )
+
+    # Reconstruir la tabla
+    updated_table = '<table>\n  <tbody>\n    ' + '<tr>'.join(rows) + '\n  </tbody>\n</table>'
+    
+    # Reemplazar en el HTML
+    html = html[:table_start] + updated_table + html[table_end:]
 
     html = html.replace('href="css/style.css"', 'href="/static/css/style.css"')
     html = html.replace('src="js/perfil.js"', 'src="/static/js/perfil.js"')
@@ -127,5 +156,5 @@ def application(environ, start_response):
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
     httpd = make_server('0.0.0.0', 8000, application)
-    # print("Servidor WSGI en puerto 8000...")
+    print("Servidor WSGI en puerto 8000...")
     httpd.serve_forever()

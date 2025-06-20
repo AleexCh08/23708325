@@ -2,13 +2,13 @@ FROM ubuntu:latest
 
 RUN apt-get update && \
     apt-get install -y \
-    git \
-    python3 \
-    python3-pip \
+        apache2 \
+        python3 \
+        python3-uwsgi \ 
+        libapache2-mod-uwsgi \  
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN pip3 install uwsgi
 
 COPY . /var/www/html/
 
@@ -17,12 +17,7 @@ RUN chown -R www-data:www-data /var/www/html/ && \
 
 EXPOSE 80
 
-CMD ["uwsgi", "--http", "0.0.0.0:80", \
-              "--wsgi-file", "/var/www/html/index.py", \
-              "--callable", "application", \
-              "--static-map", "/static=/var/www/html/static", \
-              "--static-map", "/img=/var/www/html/img", \
-              "--static-map", "/reto3=/var/www/html/reto3"]
+CMD ["uwsgi", "--http", "0.0.0.0:80", "--wsgi-file", "/var/www/html/index.py", "--callable", "application"]
 
 # Comandos a ejecutar:
 # docker build -t reto7 .
